@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    nav{
+      
+      text-align: center;
+      
+    }
+    nav a{
+      padding:1em;
+      text-decoration: none;
+      color: black;
+      font-size: 2em;
+      text-transform: capitalize;
+    }
+    .naving{
+      width:100%;
+      justify-content: space-between;
+    }
+    #head{
+      text-align: center;
+    }
+
+    .form{
+      border: 1px solid black;
+      font-size: 25px;;
+    }
+    form{
+      border:1px solid green;
+      margin:2em auto;
+      width: 30vw;
+      padding:2em;
+      
+      
+    }
+    form textarea input{
+      font-size: 15px;
+    }
+
+   
+  </style>
+</head>
+<body>
+  
+  <h1 id="head">To-Do List App </h1>
+  <hr>
+  <div class="naving">
+  <nav>
+    <a href="/">home</a>
+    <a href="/completed">Completed</a>
+    <a href="/notcompleted">not Completed</a>
+    <a href="/overdue">overdue task</a>
+    <a href="/addtask">add task</a>
+  </nav>
+  <hr>
+</div>
+<h1 id="head">--UPDATE TASKS--</h1>
+<div class="form">
+{% for task in tasks if task[0] == (id) %}
+  <form action="/updateall/{{ task[0] }}" method="post">
+    
+    <label for="text">TASK:</label><br>
+    <textarea type="text"  name="description"  placeholder="Add a new task" cols="70" rows="10" required >{{task[1]}}</textarea>
+    
+    <br>
+    <label for="date" >LAST DATE :</label>
+    <input type="date" name="last_date"    required value={{task[3]}}>
+    <br>
+    <label for="status" >STATUS :</label>
+    <select name="status" id="status">
+      <option value="Not Started">Not Started</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Finished">Finished</option>
+    </select>
+    
+    
+    
+   <button type="submit">submit</button>
+      
+    
+    
+    {% endfor %}
+  </form>
+</div>
+</body>
+</html>
